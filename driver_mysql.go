@@ -55,8 +55,6 @@ func (mh *MysqlHandel) NewMysqlMaster(connect string) (*MysqlClient, error) {
 // query
 func (m *MysqlClient) Query(str string) ([]Params, error) {
 	rows, err := m.db.Query(str)
-	if debug {
-	}
 	if err != nil {
 		return nil, err
 	}
