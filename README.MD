@@ -17,9 +17,9 @@ github.com/go-sql-driver/mysql
 import "github.com/go-sql-driver/mysql"
 // 目前只支持mysql
 // mysql1
-orm.GetMysql("default1").RegistDriver("mysql", "default", "user:pass@tcp(host)/")
+orm.RegistDriver("mysql", "default", "user:pass@tcp(host)/")
 // mysql2
-orm.GetMysql("default1").RegistDriver("mysql", "default1", "user:pass@tcp(host)/")
+orm.RegistDriver("mysql", "default1", "user:pass@tcp(host)/")
 ````
 
 #### 实例
