@@ -52,9 +52,9 @@ func (m *MysqlClient) GetCount() (int64, error) {
  * 获取单条数据
  * @param string field 字段，跟原生写法一样 id as id
  * @demo sql.table("default").Where([]SqlWhere{{"id","eq","1",Nil}}).GetOne("*")
- * @return []Params,bool
+ * @return Params,bool
  */
-func (m *MysqlClient) GetOne(field string) ([]Params, error) {
+func (m *MysqlClient) GetOne(field string) (Params, error) {
 	defer m.gc()
 	if m.sql.table == "" {
 		return nil, fmt.Errorf("table is nil.")
@@ -65,7 +65,7 @@ func (m *MysqlClient) GetOne(field string) ([]Params, error) {
 	if err != nil {
 		return nil, err
 	}
-	return res, nil
+	return res[0], nil
 }
 
 // 修改
