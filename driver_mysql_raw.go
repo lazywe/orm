@@ -54,7 +54,7 @@ func (m *MysqlClient) GetCount() (int64, error) {
  * @demo sql.table("default").Where([]SqlWhere{{"id","eq","1",Nil}}).GetOne("*")
  * @return []Params,bool
  */
-func (m *MysqlClient) GetOne(field string) ([]Params, error) {
+func (m *MysqlClient) GetOne(field string) (Params, error) {
 	defer m.gc()
 	if m.sql.table == "" {
 		return nil, fmt.Errorf("table is nil.")
@@ -65,7 +65,10 @@ func (m *MysqlClient) GetOne(field string) ([]Params, error) {
 	if err != nil {
 		return nil, err
 	}
-	return res, nil
+	if len(res) > 0 {
+		return res[0], nil
+	}
+	return nil, nil
 }
 
 // 修改
