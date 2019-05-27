@@ -65,7 +65,10 @@ func (m *MysqlClient) GetOne(field string) (Params, error) {
 	if err != nil {
 		return nil, err
 	}
-	return res[0], nil
+	if len(res) > 0 {
+		return res[0], nil
+	}
+	return nil, nil
 }
 
 // 修改
